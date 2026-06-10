@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Device Info Base64</title>
+  <title>Base64</title>
   <style>
     body {
       font-family: Arial;
@@ -13,53 +13,28 @@
     }
     textarea {
       width: 90%;
-      height: 120px;
-      margin-top: 20px;
-    }
-    button {
-      padding: 10px 20px;
-      margin-top: 10px;
-      cursor: pointer;
+      height: 150px;
     }
   </style>
 </head>
 <body>
 
-<h2>Информация об устройстве</h2>
+<h2>Base64</h2>
 
-<pre id="info"></pre>
-
-<h3>Base64:</h3>
 <textarea id="out"></textarea>
-
-<br>
-<button onclick="copyText()">Скопировать</button>
 
 <script>
 function toBase64(str) {
   return btoa(unescape(encodeURIComponent(str)));
 }
 
-// берём инфу о браузере/устройстве
 const info = `
 User-Agent: ${navigator.userAgent}
 Platform: ${navigator.platform}
 Language: ${navigator.language}
 `;
 
-document.getElementById("info").textContent = info;
-
-// кодируем в base64
-const encoded = toBase64(info);
-document.getElementById("out").value = encoded;
-
-// копирование
-function copyText() {
-  const out = document.getElementById("out");
-  out.select();
-  document.execCommand("copy");
-  alert("Скопировано!");
-}
+document.getElementById("out").value = toBase64(info);
 </script>
 
 </body>

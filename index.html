@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Base64</title>
+  <title>eRX</title>
   <style>
     body {
       font-family: Arial;
@@ -14,14 +14,26 @@
     textarea {
       width: 90%;
       height: 150px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    h2 {
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
 
-<h2>Base64</h2>
+<h2>eServices for eRX</h2>
 
 <textarea id="out"></textarea>
+
+<br>
+<button onclick="copyText()">Скопировать</button>
 
 <script>
 function toBase64(str) {
@@ -34,7 +46,15 @@ Platform: ${navigator.platform}
 Language: ${navigator.language}
 `;
 
-document.getElementById("out").value = toBase64(info);
+const encoded = toBase64(info);
+document.getElementById("out").value = encoded;
+
+function copyText() {
+  const out = document.getElementById("out");
+  out.select();
+  document.execCommand("copy");
+  alert("Скопировано!");
+}
 </script>
 
 </body>
